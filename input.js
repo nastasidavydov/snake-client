@@ -27,6 +27,14 @@ const setupInput = function (conn) {
   };
 
   stdin.on("data", handleUserInput); // register an event listener for stdin, it will run callback when i receive input from keyboard
+  const sendMessage = function(key) {
+    let message = 'Shhh...';
+    if (key === 'm'){
+      connection.write(`Say: ${message}`)
+    }
+  }
+
+  stdin.on("data", sendMessage);
 
   return stdin;
 };
@@ -34,11 +42,3 @@ const setupInput = function (conn) {
 module.exports = {setupInput};
 
 
-// } else if (key === "\033[A") {
-//   connection.write('Move: up');
-// } else if (key === "\033[B") {
-//   connection.write('Move: left');
-// } else if (key === "\033[D") {
-//   connection.write('Move: down');
-// } else if (key === "\033[C") {
-//   connection.write('Move: right');
