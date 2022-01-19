@@ -9,6 +9,10 @@ const connect = function () {
 
   // interpret incoming data as text
   conn.setEncoding("utf8");
+  conn.on('connect', () => {
+    console.log('Successfully connected to game server'); //<-- log to me when connected
+    conn.write('Name: NAS');  //<--send to server
+  })
 
   conn.on('data', (data) => {
     console.log(`Message from server:  ${data}`)  //<-- code that defines what to do when an event occurs is often called an event handler.
